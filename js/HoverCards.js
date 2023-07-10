@@ -8,23 +8,17 @@ class card3D {
   }
   mouseMove() {
     this.card.addEventListener("mousemove", (event) =>{
-      // Obtener la posición del mouse en relación con el elemento
+      // !to get the coordinates of the mouse related to the element.
       let rect = this.card.getBoundingClientRect();
       let mouseX = event.clientX - rect.left;
       let mouseY = event.clientY - rect.top;
       this.card.style.transform = `perspective(400px) rotateX(${
         (mouseX / 484) * 16 - 6
       }deg) rotateY(${(mouseY / 324) * 16 - 6}deg)`;
-
-      // Hacer algo con las coordenadas del mouse
-      // console.log(
-      //   "Posición del mouse:",
-      //   Math.round(mouseX),
-      //   Math.round(mouseY)
-      // );
     });
   }
   async hover() {
+    // ! the animation is not smooth, then letting the animation breathe.
     this.card.addEventListener("mouseleave", async () => {
       this.card.style.transition = "all 400ms ease";
       this.card.style.transform = `perspective(400px) rotateX(0) rotateY(0)`;
@@ -35,8 +29,8 @@ class card3D {
   }
 }
 
-if (window.innerWidth >= 768) {
-  cards = {
-    card1: new card3D(document.querySelector(".card")),
-  };
-}
+// if (window.innerWidth >= 768) { // ! If the screen is wider than 768px then apply the Class
+//   cards = {
+//     card1: new card3D(document.querySelector(".card")),
+//   };
+// }

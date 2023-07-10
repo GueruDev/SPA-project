@@ -59,7 +59,6 @@ h1{
   box-shadow: 5px 5px 20px -5px black;
   will-change: transform;
   /* transition: all .05s ease; */
-  cursor: pointer;
   transform: perspective(400px) rotateX(0deg) rotateY(0deg);
 }
 .card > .card__miniature{
@@ -75,6 +74,39 @@ h1{
   margin: 3rem auto;
   padding: .3rem 3rem;
 }
+
+/* VIEW TRANSTION */
+
+/* ::view-transition-old(root){
+  animation-name: easeOut;
+}
+::view-transition-new(root){
+  animation-name: easeIn;
+} */
+::view-transition-old(root),
+::view-transition-new(root){
+  animation-duration: 1.5s;
+}
+
+/* @keyframes easeOut {
+  0%{
+    transform: scale(0);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+@keyframes easeIn {
+  0%{
+    transform: scale(1);
+    }
+  100%{
+    transform: scale(0);
+    }
+} */
+
+
 
 @media(width <= 768px){
   h1{
