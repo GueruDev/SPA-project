@@ -20,25 +20,24 @@ class addCards {
     this.container.appendChild(this.htmlCardElement());
     this.counter++;
     let newElement = document.querySelector(
-      `.container > div.card:nth-child(${this.counter})`
+      `.container > a:nth-child(${this.counter})`
     );
-    console.log(newElement);
     cards[`card${this.counter}`] = new card3D(newElement); // ! bug on mobile
   }
 
   htmlCardElement(){
     let div = document.createElement('div');
-    div.innerHTML = `<div class='card'><img class='card__miniature' src='${this.images[this.counter]}' /><p class='card__description'>${this.descriptions[this.counter]}</p></div>`; //! code structure
+    div.innerHTML = `<a class='card' href='/${this.urls[this.counter]}' onclick='route()'><img href='/${this.urls[this.counter]}' class='card__miniature' src='${this.images[this.counter]}' /><p class='card__description'>${this.descriptions[this.counter]}</p></a>`;
     let card = div.firstChild;
     return card;
   }
   async fetchData(){
     try {
-      const response = await fetch('https://api.escuelajs.co/api/v1/products');
+      const response = await fetch('https://api.escuelajs.co/api/v1/users');
       const data = await response.json();
       this.urls = data.map(obj => obj.name);
-      this.descriptions = data.map(obj => obj.description);
-      this.images = data.map(obj => obj.images[0]);
+      this.descriptions = data.map(obj => obj.email);
+      this.images = data.map(obj => obj.avatar);
       
       return;
     } catch (error) {
