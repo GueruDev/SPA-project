@@ -24,7 +24,6 @@ class card3D {
       this.card.style.transform = `perspective(400px) rotateX(0) rotateY(0)`;
       await new Promise((resolve) => setTimeout(resolve, 400));
       this.card.style.transition = "none";
-      console.log("Hover outside");
     });
   }
 }

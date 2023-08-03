@@ -1,4 +1,8 @@
 /* GENERAL STYLES */
+:root{
+  --academiaLab-color: #c0392b;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -12,6 +16,14 @@ html {
 }
 html body {
   font-size: 1.6rem;
+}
+
+a:link, a:visited, a:active {
+  text-decoration:none;
+}
+
+a{
+  color: unset;
 }
 
 main{
@@ -32,8 +44,8 @@ h1{
 
 
 .logo::before{
-  background-color: #c0392b;
-  color: #fff;
+  background-color: var(--academiaLab-color);
+  color: white;
   content: "§";
   font-family: Lato,sans-serif;
   font-weight: 700;
@@ -57,10 +69,12 @@ h1{
   /* background-color: gray; */
   width: clamp(15rem,85%,50rem);
   color: black;
+
   box-shadow: 5px 5px 20px -5px black;
-  will-change: transform;
-  /* transition: all .05s ease; */
+  border-top: var(--academiaLab-color) solid 6px;
+
   transform: perspective(400px) rotateX(0deg) rotateY(0deg);
+  will-change: transform;
 }
 .card > .card__miniature{
   width: 100%;

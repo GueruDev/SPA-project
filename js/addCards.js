@@ -3,12 +3,12 @@ class addCards {
     this.container = document.querySelector(`div.container`);
     this.counter = 0;
     this.data = [];
-    this.urls = [];
-    this.descriptions = [];
-    this.images = [];
-    this.fetchData();
+    this.showed = [];
+    this.fetchData().then(() => {
+      this.renderFirstElements(9);
+    });
   }
-  add() {
+  add() { //! método que verifica si la api startViewTransition está disponible sino renderiza de manera común
     if (!document.startViewTransition) {
       this.addIt();
     } else {
@@ -17,25 +17,24 @@ class addCards {
   }
 
   addIt() {
-    this.container.appendChild(this.htmlCardElement());
+    let elementData = this.data[this.counter];
+    this.container.appendChild(this.htmlCardElement(elementData));
     this.counter++;
     let newElement = document.querySelector(
       `.container > a:nth-child(${this.counter})`
     );
     cards[`card${this.counter}`] = new card3D(newElement); // ! bug on mobile
+
+    this.showed.push(elementData);
   }
 
-  htmlCardElement() {
+  htmlCardElement(data) {
     let div = document.createElement("div");
-    div.innerHTML = `<a class='card' href='/${
-      this.urls[this.counter]
-    }' onclick='Spa.routing()'><img href='/${
-      this.urls[this.counter]
-    }' class='card__miniature' src='${
-      this.images[this.counter]
-    }' /><p class='card__description'>${
-      this.descriptions[this.counter]
-    }</p></a>`;
+    let titleNoSpace = data.title.replace(/\s+/g, ""); //! Expresion regular junto a un replace para eliminar espacios en las frases
+    div.innerHTML = `<a class='card' href='/${titleNoSpace}' onclick='routing()' data-id='${data.id}'>
+    <img href='/${titleNoSpace}' class='card__miniature' src='${data.thumbnail}' data-id='${data.id}'/>
+    <h2>${data.title}</h2>
+    <p class='card__description' href='/${titleNoSpace}' data-id='${data.id}'>${data.short_description}</p> </a>`;
     let card = div.firstChild;
     return card;
   }
@@ -48,14 +47,11 @@ class addCards {
       },
     };
     try {
-      const url = 'https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc';
+      const url =
+        "https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc";
       const response = await fetch(url, cors);
       const data = await response.json();
       this.data = data;
-      this.urls = data.map((obj) => obj.id);
-      this.descriptions = data.map((obj) => obj.short_description);
-      this.images = data.map((obj) => obj.thumbnail);
-
       return;
     } catch (error) {
       console.error("I cannot fetch the data");
@@ -63,8 +59,17 @@ class addCards {
       return [];
     }
   }
-}
-const addVideosButton = new addCards();
 
-// .then(names => console.log(`Names of categories: ${names}`))
-// .catch(error => console.error(`Error: ${error}`));
+  renderFirstElements(amount) {
+    // Asegurarse de que hay al menos 9 elementos en this.data antes de continuar
+    if (this.data.length < amount) {
+      console.error("No hay suficientes elementos para renderizar.");
+      return;
+    }
+
+    for (let i = 0; i < amount; i++) {
+      this.add();
+    }
+  }
+}
+const addVideosButton = new addCards(); //! Falta manejar el error cuando no hay data.
