@@ -8,7 +8,8 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif, Arial, Helvetica, sans-serif;
-  /* outline: 2px green solid; */
+
+  /* outline: 2px solid green; */
 }
 
 html {
@@ -31,7 +32,6 @@ main{
   justify-content: center;
   align-content: center;
   flex-direction: column;
-  /* gap: 3rem; */
 }
 
 /* LOGO */
@@ -39,7 +39,6 @@ h1{
   text-align: center;
   margin: 2rem 0;
   font-size: 8rem;
-  /* width: 44rem; */
 }
 
 
@@ -61,12 +60,9 @@ h1{
   align-content: center;
   justify-content: center;
   flex-wrap: wrap;
-  /* height: 80vh; */
-  /* width: 100vw; */
   gap: 5rem;
 }
 .card{
-  /* background-color: gray; */
   width: clamp(15rem,85%,50rem);
   color: black;
 
@@ -83,45 +79,10 @@ h1{
   background-color: white;
 }
 
-/* BUTTON */
-
-.addCard{
-  margin: 3rem auto;
-  padding: .3rem 3rem;
-}
-
-/* VIEW TRANSTION */
-
-/* ::view-transition-old(root){
-  animation-name: easeOut;
-}
+/* ::view-transition-old(root),
 ::view-transition-new(root){
-  animation-name: easeIn;
+  animation-duration: .2s;
 } */
-::view-transition-old(root),
-::view-transition-new(root){
-  animation-duration: 1.5s;
-}
-
-/* @keyframes easeOut {
-  0%{
-    transform: scale(0);
-  }
-  100%{
-    transform: scale(1);
-  }
-}
-
-@keyframes easeIn {
-  0%{
-    transform: scale(1);
-    }
-  100%{
-    transform: scale(0);
-    }
-} */
-
-
 
 @media(width <= 768px){
   h1{

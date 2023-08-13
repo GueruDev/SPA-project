@@ -33,7 +33,7 @@ class addCards {
     let titleNoSpace = data.title.replace(/\s+/g, ""); //! Expresion regular junto a un replace para eliminar espacios en las frases
     div.innerHTML = `<a class='card' href='/${titleNoSpace}' onclick='routing()' data-id='${data.id}'>
     <img href='/${titleNoSpace}' class='card__miniature' src='${data.thumbnail}' data-id='${data.id}'/>
-    <h2>${data.title}</h2>
+    <h2 href='/${titleNoSpace}' data-id='${data.id}'>${data.title}</h2>
     <p class='card__description' href='/${titleNoSpace}' data-id='${data.id}'>${data.short_description}</p> </a>`;
     let card = div.firstChild;
     return card;
@@ -73,3 +73,4 @@ class addCards {
   }
 }
 const addVideosButton = new addCards(); //! Falta manejar el error cuando no hay data.
+//! bug en el contenido secundario... cambiar enfoque al inicio de la página.
