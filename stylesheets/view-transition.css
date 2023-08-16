@@ -1,19 +1,23 @@
-div.container,div.allContent{
-    view-transition-name:main-content;
-    /* background-color: aqua; */
-}
-
-/* div.allContent{
-    view-transition-name:main-content;    
-    background-color: aqua;
+/* ::view-transition-old(pic-one),
+::view-transition-new(pic-one){
+    animation-duration: 2s;
 } */
-
-
-/* ::view-transition-old(main-content){
-    animation: ZoomIn 1s ease;
+::view-transition-old(root){
+    animation-name: slide-left;
+    animation-duration: .25s;
 }
-::view-transition-new(main-content){
-    animation: ZoomOut 1s ease;
+::view-transition-new(root){
+    animation-name: slide-right;
+    animation-duration: .25s;
+}
+
+/* .card__miniature{
+    view-transition-name:pic-one;
+    contain: paint;
+}
+.mainContent > img{
+    view-transition-name:pic-one;
+    contain: paint;
 } */
 
 @keyframes ZoomIn {
@@ -32,3 +36,20 @@ div.container,div.allContent{
         transform: scale(0);
     }    
 }
+@keyframes slide-left {
+    from {
+      left: 0%;
+    }
+    to {
+      left: -100%;
+    }
+  }
+  
+  @keyframes slide-right {
+    from {
+      left: 100%;
+    }
+    to {
+      left: 0%;
+    }
+  }

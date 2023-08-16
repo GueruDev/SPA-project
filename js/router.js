@@ -21,30 +21,29 @@ function urlHandler(identifier) {
   
   if (data.some(obj => obj.id == identifier)){
     let mainContent = data.find(obj => obj.id == identifier);
+    let htmlCode = document.createElement('main');
+    htmlCode.classList.add('mainSecondary');
     dataLeft = addVideosButton.data.filter(obj => obj.id !== identifier);
     
     function randomNumberArray (length){
       return Math.floor(Math.random() * length);
     }
     function showMainVideo (data){
-      document.body.innerHTML = `<main class='mainSecondary'>
-      <a href="/"><h1 class="logo">AcademiaLab</h1></a>
+
+      htmlCode.innerHTML += `<a href="/"><h1 class="logo">AcademiaLab</h1></a>
       <div class='allContent'>
       <div class='mainContent'>
       <h2>${data.title}</h2>
-      <img src='${data.thumbnail}'/>
+      <img src='${data.thumbnail}' style='view-transition-name:pic${data.id};'/>
       <h2>Genre:${data.genre}</h2>
       <h2>Platform:${data.platform}</h2>
       <p>${data.short_description}Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas autem consequuntur delectus saepe ut iure et soluta. Omnis, nostrum inventore.</p>
       <section class='commentsContainer'><h3>Comments:</h3></section>
       </div>
       <div class='secondaryContent'></div>
-      </div>
-      </main>`;
+      </div>`;
       return
     }
-
-
 
     function indexFindFilter (numb){
       let result = data[numb];
@@ -55,7 +54,7 @@ function urlHandler(identifier) {
 
 
     function showOthers (data){
-      let container = document.querySelector(`div.secondaryContent`);
+      let container = htmlCode.querySelector(`div.secondaryContent`);
       for(let i = 0; 6 > i; i++){
         let result = data[randomNumberArray(data.length - 1)];
         let titleNoSpace = result.title.replace(/\s+/g, "");
@@ -72,11 +71,10 @@ function urlHandler(identifier) {
         <p href='/${titleNoSpace}' data-id='${result.id}'>${result.short_description}</p>`
         container.appendChild(htmlElement);
       };
-      // indexFindFilter(randomNumberArray(data.length - 1));
     }
 
     function showComments(){
-      let container = document.querySelector(`section.commentsContainer`);
+      let container = htmlCode.querySelector(`section.commentsContainer`);
       for(let i = 0; 5 > i; i++){
         let comment = document.createElement('div');
         comment.classList.add('commentCard');
@@ -91,6 +89,16 @@ function urlHandler(identifier) {
     showMainVideo(mainContent);
     showOthers(dataLeft);
     showComments();
+
+    if (!document.startViewTransition) {
+      document.body.innerHTML = htmlCode.outerHTML;
+    } else {
+      document.startViewTransition(() =>{
+        document.body.innerHTML = htmlCode.outerHTML;        
+      });
+    }
+
+    // ! Probably be the multi renders of the dom let's order this shit
 
     window.scrollTo({
       top:0,
