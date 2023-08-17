@@ -15,8 +15,8 @@ class scrollLoadingCLass{
             const displacementPercentage = (scrollY / heightPage) * 100;
         
             // Imprime el porcentaje de desplazamiento en la consola
-            console.log(`Porcentaje de desplazamiento: ${displacementPercentage.toFixed(2)}%`);
-            if(displacementPercentage > 80){
+            // console.log(`Porcentaje de desplazamiento: ${displacementPercentage.toFixed(2)}%`);
+            if(displacementPercentage > 90){
                 if(document.querySelector('div.container'))
                     addVideosButton.add();
             }

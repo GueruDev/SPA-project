@@ -7,6 +7,7 @@ class addCards {
     this.fetchData().then(() => {
       this.renderFirstElements(9);
     });
+    this.mainCaptured;
   }
   add() { //! método que verifica si la api startViewTransition está disponible sino renderiza de manera común
     if (!document.startViewTransition) {
@@ -70,6 +71,11 @@ class addCards {
     for (let i = 0; i < amount; i++) {
       this.add();
     }
+    setTimeout(()=> {
+      this.mainCaptured = document.querySelector('div.container');
+    }
+      , 5);
+    
   }
 }
 const addVideosButton = new addCards(); //! Falta manejar el error cuando no hay data.
