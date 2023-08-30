@@ -1,5 +1,6 @@
 // ! Decirle Edwind que se ocupe del problema con redirecciones 301
 let elementPicked;
+
 function routing(event) {
   // ! Function that prevents the normal behavior and change the url
   event = window.event || event;
@@ -12,7 +13,46 @@ function routing(event) {
   } else if (newUrl === "/") {
     window.history.pushState({}, "", newUrl);
     function renderHome(){
-      document.body.innerHTML= `<main id="main">
+      document.body.innerHTML= `
+      <nav id="nav-main">
+      <ul class="menu" id="menu-paginas">
+        <div class="menu-items">
+          <li class="menu-item">
+            <a href="https://academia-lab.com/foros/">FORUMS</a>
+          </li>
+          <li class="menu-item">
+            <a href="https://academia-lab.com/books/">BOOKS</a>
+          </li>
+          <li class="menu-item">
+            <a href="https://academia-lab.com/apa-gen/">APA GENERATOR</a>
+          </li>
+          <li class="menu-item">
+            <a href="https://www.youtube.com/@academialab?sub_confirmation=1"
+              >YOUTUBE</a
+            >
+          </li>
+        </div>
+        <button id="accountBtn" class="loginWraper" type="button">
+          <span>
+            LOGIN
+          </span>
+          <svg
+              class="svg-accountcircle"
+              xmlns="http://www.w3.org/2000/svg"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+            >
+              <path d="M0 0h24v24H0z" fill="none"></path>
+              <path class="svg-color"
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"
+                fill="white"
+              ></path>
+            </svg>
+        </button>
+      </ul>
+    </nav>
+      <main id="main">
       <a href="/" onclick="routing()"><h1 href="/" class="logo">AcademiaLab</h1></a>
       </div>
       </main>`;
@@ -83,12 +123,12 @@ function urlHandler(identifier) {
       return;
     }
 
-    function indexFindFilter(numb) {
-      let result = data[numb];
-      data = data.filter((obj) => obj.id !== result.id);
-      console.log(result);
-      return result;
-    }
+    // function indexFindFilter(numb) {
+    //   let result = data[numb];
+    //   data = data.filter((obj) => obj.id !== result.id);
+    //   console.log(result);
+    //   return result;
+    // }
 
     function showOthers(data) {
       let container = htmlCode.querySelector(`div.secondaryContent`);
@@ -129,9 +169,6 @@ function urlHandler(identifier) {
       elements.forEach((element) => {
         let hovered = new card3D(element);
       });
-      // console.log(elements[0]);
-      // cards.loquesea = new card3D(elements[0]);
-      // console.log(elements);
     }
     showMainVideo(mainContent);
     showOthers(dataLeft);
@@ -141,12 +178,50 @@ function urlHandler(identifier) {
       document.body.innerHTML = htmlCode.outerHTML;
     } else {
       document.startViewTransition(() => {
-        document.body.innerHTML = htmlCode.outerHTML;
+        document.body.innerHTML = `
+        <nav id="nav-main">
+      <ul class="menu" id="menu-paginas">
+        <div class="menu-items">
+          <li class="menu-item">
+            <a href="https://academia-lab.com/foros/">FORUMS</a>
+          </li>
+          <li class="menu-item">
+            <a href="https://academia-lab.com/books/">BOOKS</a>
+          </li>
+          <li class="menu-item">
+            <a href="https://academia-lab.com/apa-gen/">APA GENERATOR</a>
+          </li>
+          <li class="menu-item">
+            <a href="https://www.youtube.com/@academialab?sub_confirmation=1"
+              >YOUTUBE</a
+            >
+          </li>
+        </div>
+        <button id="accountBtn" class="loginWraper" type="button">
+          <span>
+            LOGIN
+          </span>
+          <svg
+              class="svg-accountcircle"
+              xmlns="http://www.w3.org/2000/svg"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+            >
+              <path d="M0 0h24v24H0z" fill="none"></path>
+              <path class="svg-color"
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"
+                fill="white"
+              ></path>
+            </svg>
+        </button>
+      </ul>
+    </nav>
+        ` //! ADDING NAV ... it would be better ...
+        document.body.innerHTML += htmlCode.outerHTML;
         setTimeout(() => addHovers(), 10);
       });
     }
-
-    // ! Probably be the multi renders of the dom let's order this shit
 
     window.scrollTo({
       top: 0,
