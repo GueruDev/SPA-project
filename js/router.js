@@ -123,13 +123,6 @@ function urlHandler(identifier) {
       return;
     }
 
-    // function indexFindFilter(numb) {
-    //   let result = data[numb];
-    //   data = data.filter((obj) => obj.id !== result.id);
-    //   console.log(result);
-    //   return result;
-    // }
-
     function showOthers(data) {
       let container = htmlCode.querySelector(`div.secondaryContent`);
       for (let i = 0; 6 > i; i++) {
@@ -139,8 +132,6 @@ function urlHandler(identifier) {
         htmlElement.classList.add("secondaryCard");
         htmlElement.setAttribute("href", `/${titleNoSpace}`);
         htmlElement.setAttribute("onclick", "routing()");
-
-        // let elementHovered = new card3D(htmlElement);
 
         data = data.filter((obj) => obj.id !== result.id);
         htmlElement.innerHTML = `<img href='/${titleNoSpace}' src='${result.thumbnail}' data-id='${result.id}'/>
