@@ -14,46 +14,8 @@ function routing(event) {
     window.history.pushState({}, "", newUrl);
     function renderHome(){
       document.body.innerHTML= `
-      <nav id="nav-main">
-      <ul class="menu" id="menu-paginas">
-        <div class="menu-items">
-          <li class="menu-item">
-            <a href="https://academia-lab.com/foros/">FORUMS</a>
-          </li>
-          <li class="menu-item">
-            <a href="https://academia-lab.com/books/">BOOKS</a>
-          </li>
-          <li class="menu-item">
-            <a href="https://academia-lab.com/apa-gen/">APA GENERATOR</a>
-          </li>
-          <li class="menu-item">
-            <a href="https://www.youtube.com/@academialab?sub_confirmation=1"
-              >YOUTUBE</a
-            >
-          </li>
-        </div>
-        <button id="accountBtn" class="loginWraper" type="button">
-          <span>
-            LOGIN
-          </span>
-          <svg
-              class="svg-accountcircle"
-              xmlns="http://www.w3.org/2000/svg"
-              height="24"
-              viewBox="0 0 24 24"
-              width="24"
-            >
-              <path d="M0 0h24v24H0z" fill="none"></path>
-              <path class="svg-color"
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"
-                fill="white"
-              ></path>
-            </svg>
-        </button>
-      </ul>
-    </nav>
       <main id="main">
-      <a href="/" onclick="routing()"><h1 href="/" class="logo">AcademiaLab</h1></a>
+      <a href="/" onclick="routing()"><h1 href="/" class="logo">MMROPG GAMES</h1></a>
       </div>
       </main>`;
       setTimeout(()=> {
@@ -108,13 +70,11 @@ function urlHandler(identifier) {
       return Math.floor(Math.random() * length);
     }
     function showMainVideo(data) {
-      htmlCode.innerHTML += `<a href="/" onclick="routing()"><h1 class="logo" href="/">AcademiaLab</h1></a>
+      htmlCode.innerHTML += `<a href="/" onclick="routing()"><h1 class="logo" href="/">MMORPG GAMES</h1></a>
       <div class='allContent'>
       <div class='mainContent'>
       <h2>${data.title}</h2>
       <img src='${data.thumbnail}' style='view-transition-name:pic${data.id};'/>
-      <h2>Genre:${data.genre}</h2>
-      <h2>Platform:${data.platform}</h2>
       <p>${data.short_description}Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas autem consequuntur delectus saepe ut iure et soluta. Omnis, nostrum inventore.</p>
       <section class='commentsContainer'><h3>Comments:</h3></section>
       </div>
@@ -169,47 +129,7 @@ function urlHandler(identifier) {
       document.body.innerHTML = htmlCode.outerHTML;
     } else {
       document.startViewTransition(() => {
-        document.body.innerHTML = `
-        <nav id="nav-main">
-      <ul class="menu" id="menu-paginas">
-        <div class="menu-items">
-          <li class="menu-item">
-            <a href="https://academia-lab.com/foros/">FORUMS</a>
-          </li>
-          <li class="menu-item">
-            <a href="https://academia-lab.com/books/">BOOKS</a>
-          </li>
-          <li class="menu-item">
-            <a href="https://academia-lab.com/apa-gen/">APA GENERATOR</a>
-          </li>
-          <li class="menu-item">
-            <a href="https://www.youtube.com/@academialab?sub_confirmation=1"
-              >YOUTUBE</a
-            >
-          </li>
-        </div>
-        <button id="accountBtn" class="loginWraper" type="button">
-          <span>
-            LOGIN
-          </span>
-          <svg
-              class="svg-accountcircle"
-              xmlns="http://www.w3.org/2000/svg"
-              height="24"
-              viewBox="0 0 24 24"
-              width="24"
-            >
-              <path d="M0 0h24v24H0z" fill="none"></path>
-              <path class="svg-color"
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"
-                fill="white"
-              ></path>
-            </svg>
-        </button>
-      </ul>
-    </nav>
-        ` //! ADDING NAV ... it would be better ...
-        document.body.innerHTML += htmlCode.outerHTML;
+        document.body.innerHTML = htmlCode.outerHTML;
         setTimeout(() => addHovers(), 10);
       });
     }
